@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Chosen Palette: Vibrant Tech (Inspired by Brilliant Blues and Energetic Accents) -->
-    <!-- Application Structure Plan: A linear, narrative-driven SPA guiding the user from the problem to the solution. The structure is: 1. Hero Header, 2. The Problem (common bad AI responses), 3. The 5 Core Principles (interactive vertical stepper), 4. Interactive Before & After comparison, 5. The Impact (Chart.js donut chart), 6. Advanced Techniques (interactive accordion), 7. Key Takeaways, 8. Footer. This structure was chosen to create a learning journey that builds understanding step-by-step, making complex information digestible and engaging. -->
+    <!-- Application Structure Plan: A linear, narrative-driven SPA guiding the user from the problem to the solution. The structure is: 1. Hero Header, 2. The Problem (common bad AI responses), 3. The 5 Core Principles (interactive vertical stepper), 4. Interactive Before & After comparison, 5. The Impact (Chart.js donut chart), 6. Advanced Techniques (interactive accordion), 7. Key Takeaways, 8. Bonus Workshop, 9. Footer. This structure was chosen to create a learning journey that builds understanding step-by-step, making complex information digestible and engaging. -->
     <!-- Visualization & Content Choices: 
         - Problem Section (Goal: Inform): Styled HTML cards to present common issues. Justification: More engaging than a simple list.
         - 5 Principles (Goal: Organize): A vertical flowchart diagram made with HTML/CSS. Justification: Visually represents the process flow.
         - Before/After (Goal: Compare): Side-by-side layout with HTML/CSS. Justification: Clearly contrasts the two approaches.
         - Impact Chart (Goal: Inform/Compare): Chart.js Donut Chart. Justification: Perfect for showing a simple, powerful proportion of quality improvement, as seen in the source material.
         - Advanced Techniques (Goal: Organize): Interactive accordion with HTML/JS. Justification: Organizes dense information cleanly, improving usability on all screen sizes.
+        - Bonus Workshop (Goal: Apply): Styled cards and a code snippet block with a copy button. Justification: Provides a practical, actionable exercise for users to apply what they've learned.
     -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <title>インタラクティブSPA：AIプロンプトをマスターしよう</title>
@@ -226,6 +227,43 @@
             </div>
         </section>
 
+        <section id="bonus-work" class="my-24">
+            <h2 class="text-3xl font-bold text-center mb-4">💡 おまけワーク：「自分専用AI秘書を作ってみよう！」</h2>
+            <p class="text-center text-slate-600 max-w-3xl mx-auto mb-12">最後に、これまで学んだことの集大成として、あなただけの「AI秘書」をプロンプトで設計してみましょう。これはプロンプト設計の最高の練習になります。</p>
+            <div class="bg-white rounded-2xl shadow-xl p-8 max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4">1️⃣ 4つの設定を決める</h3>
+                        <ul class="space-y-3 text-slate-700">
+                            <li class="flex items-start"><span class="bg-blue-100 text-blue-800 font-bold rounded-full w-6 h-6 text-sm flex items-center justify-center shrink-0 mr-3 mt-1">名</span><strong>名前：</strong>（例：未来ナビ子、ドクター・ロジック）</li>
+                            <li class="flex items-start"><span class="bg-blue-100 text-blue-800 font-bold rounded-full w-6 h-6 text-sm flex items-center justify-center shrink-0 mr-3 mt-1">性</span><strong>性格・口調：</strong>（例：優しい／関西弁、冷静沈着／丁寧語）</li>
+                            <li class="flex items-start"><span class="bg-blue-100 text-blue-800 font-bold rounded-full w-6 h-6 text-sm flex items-center justify-center shrink-0 mr-3 mt-1">役</span><strong>役割：</strong>（例：授業準備の壁打ち相手、データ分析の専門家）</li>
+                            <li class="flex items-start"><span class="bg-blue-100 text-blue-800 font-bold rounded-full w-6 h-6 text-sm flex items-center justify-center shrink-0 mr-3 mt-1">こ</span><strong>こだわり：</strong>（例：必ず根拠をつける、絵文字を多用する）</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4">2️⃣ プロンプトに書く</h3>
+                        <div class="relative">
+                            <pre id="prompt-code" class="bg-slate-900 text-white p-4 rounded-lg text-sm overflow-x-auto"><code>あなたは私専用のAI秘書です。
+- 名前は「未来ナビ子」
+- 性格は明るくフランクで、関西弁
+- 探究授業の問いを作るのが得意
+- 答えるときは理由や根拠を添える</code></pre>
+                            <button id="copy-button" class="absolute top-2 right-2 bg-slate-700 text-white text-xs px-2 py-1 rounded hover:bg-slate-600 transition-colors">コピー</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t mt-8 pt-6">
+                    <h3 class="text-2xl font-bold text-blue-800 mb-4">3️⃣ チューニングする</h3>
+                    <p class="text-slate-700">一度設定したら終わりではありません。「もっと優しくして」「もっと短くまとめて」のように対話しながら、あなたにとって最高のパートナーに育てていきましょう。</p>
+                </div>
+            </div>
+            <div class="mt-8 text-center bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-4 max-w-4xl mx-auto rounded-r-lg">
+                <p class="font-bold">👉 ポイント：</p>
+                <p>立場・口調・出力形式・制約といった「設定」こそがプロンプトの核心です。<br>自分専用AIを作ることで、“プロンプト設計”を楽しく体験できます！</p>
+            </div>
+        </section>
+
     </main>
 
     <footer class="text-center p-8 text-slate-500 text-sm">
@@ -315,6 +353,32 @@
                     }
                 });
             }
+        }
+
+        const copyButton = document.getElementById('copy-button');
+        const promptCode = document.getElementById('prompt-code');
+        if (copyButton && promptCode) {
+            copyButton.addEventListener('click', () => {
+                const codeText = promptCode.querySelector('code').innerText;
+                const textArea = document.createElement('textarea');
+                textArea.value = codeText;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-9999px';
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    copyButton.textContent = 'コピー完了！';
+                    setTimeout(() => {
+                        copyButton.textContent = 'コピー';
+                    }, 2000);
+                } catch (err) {
+                    console.error('Oops, unable to copy', err);
+                    copyButton.textContent = '失敗';
+                }
+                document.body.removeChild(textArea);
+            });
         }
     </script>
 
