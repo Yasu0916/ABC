@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Chosen Palette: Vibrant Tech (Inspired by Brilliant Blues and Energetic Accents) -->
+    <!-- Application Structure Plan: A linear, narrative-driven SPA guiding the user from the problem to the solution. The structure is: 1. Hero Header, 2. The Problem (common bad AI responses), 3. The 5 Core Principles (interactive vertical stepper), 4. Interactive Before & After comparison, 5. The Impact (Chart.js donut chart), 6. Advanced Techniques (interactive accordion), 7. Key Takeaways, 8. Footer. This structure was chosen to create a learning journey that builds understanding step-by-step, making complex information digestible and engaging. -->
+    <!-- Visualization & Content Choices: 
+        - Problem Section (Goal: Inform): Styled HTML cards to present common issues. Justification: More engaging than a simple list.
+        - 5 Principles (Goal: Organize): A vertical flowchart diagram made with HTML/CSS. Justification: Visually represents the process flow.
+        - Before/After (Goal: Compare): Side-by-side layout with HTML/CSS. Justification: Clearly contrasts the two approaches.
+        - Impact Chart (Goal: Inform/Compare): Chart.js Donut Chart. Justification: Perfect for showing a simple, powerful proportion of quality improvement, as seen in the source material.
+        - Advanced Techniques (Goal: Organize): Interactive accordion with HTML/JS. Justification: Organizes dense information cleanly, improving usability on all screen sizes.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <title>インタラクティブSPA：AIプロンプトをマスターしよう</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #f8fafc; /* Light gray background */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flow-line {
+            width: 3px;
+            background-color: #3b82f6; /* Blue-500 */
+            flex-grow: 1;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <main class="container mx-auto max-w-5xl p-4 sm:p-6 md:p-8">
+        
+        <header class="text-center my-16">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-blue-900 leading-tight">AIプロンプトをマスターしよう</h1>
+            <p class="mt-4 text-lg md:text-xl text-blue-700">曖昧な質問から、価値ある答えへ</p>
+        </header>
+
+        <section id="problem" class="my-24">
+            <h2 class="text-3xl font-bold text-center mb-4">AIの答えに、こう感じたことはありませんか？ 🤔</h2>
+            <p class="text-center text-slate-600 max-w-3xl mx-auto mb-12">AIの能力を最大限に引き出せないのは、私たちの「指示の質」が原因かもしれません。よくある残念な結果を見てみましょう。</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center border-t-4 border-red-500">
+                    <h3 class="text-xl font-bold text-red-800 mb-2">「そういう意味じゃない…」</h3>
+                    <p class="text-slate-600">AIがリクエストの核心を誤解し、見当違いの答えが返ってくる。</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center border-t-4 border-yellow-500">
+                    <h3 class="text-xl font-bold text-yellow-800 mb-2">「ありきたりだ…」</h3>
+                    <p class="text-slate-600">実践的でない、教科書通りの一般論しか返ってこない。</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center border-t-4 border-orange-500">
+                    <h3 class="text-xl font-bold text-orange-800 mb-2">「これ、本当に合ってる？」</h3>
+                    <p class="text-slate-600">情報が信頼性に欠け、文脈も不明で、使うのが不安になる。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution" class="my-24">
+            <h2 class="text-3xl font-bold text-center mb-4">秘訣は、すべてプロンプトにあり。</h2>
+            <p class="text-center text-slate-600 max-w-3xl mx-auto mb-16">AIとの対話を変革する「5つの基本原則」です。これらを意識するだけで、回答の質は劇的に変わります。</p>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="flex">
+                    <div class="flex flex-col items-center mr-6">
+                        <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold">1</div>
+                        <div class="flow-line"></div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-8 w-full">
+                        <h3 class="text-xl font-bold text-blue-800">前提を伝える</h3>
+                        <p class="mt-2 text-slate-600">あなたが誰で、何がしたいのか（立場、目的、背景）を具体的に教えます。</p>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="flex flex-col items-center mr-6">
+                        <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold">2</div>
+                        <div class="flow-line"></div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-8 w-full">
+                        <h3 class="text-xl font-bold text-blue-800">出力形式を指定する</h3>
+                        <p class="mt-2 text-slate-600">箇条書き、表形式、シナリオ形式など、欲しいアウトプットの形を明確に指示します。</p>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="flex flex-col items-center mr-6">
+                        <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold">3</div>
+                        <div class="flow-line"></div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-8 w-full">
+                        <h3 class="text-xl font-bold text-blue-800">役割を与える</h3>
+                        <p class="mt-2 text-slate-600">AIに専門家の役割（ペルソナ）を与えることで、回答の視点と質を鋭くします。</p>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="flex flex-col items-center mr-6">
+                        <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold">4</div>
+                        <div class="flow-line"></div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-8 w-full">
+                        <h3 class="text-xl font-bold text-blue-800">メリット・デメリットを尋ねる</h3>
+                        <p class="mt-2 text-slate-600">多角的な視点を得るため、物事の利点と欠点の両方を聞きます。</p>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="flex flex-col items-center mr-6">
+                        <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold">5</div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 w-full">
+                        <h3 class="text-xl font-bold text-blue-800">根拠を問う</h3>
+                        <p class="mt-2 text-slate-600">情報の正確性を高めるために、出典や理由、背景にある理論を尋ねます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison" class="my-24">
+            <h2 class="text-3xl font-bold text-center mb-4">曖昧から価値へ：実践例</h2>
+            <p class="text-center text-slate-600 max-w-3xl mx-auto mb-12">原則を適用することで、簡単な質問がどれほど強力なツールに変わるかをご覧ください。</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-2xl shadow-xl p-8 border-t-8 border-red-500">
+                    <h3 class="text-2xl font-bold text-red-800 mb-4">改善前 👎</h3>
+                    <p class="font-mono bg-slate-100 p-4 rounded-md text-slate-700">「教育におけるAIの活用法を教えて」</p>
+                    <div class="mt-6">
+                        <h4 class="font-bold text-slate-800">得られる結果：</h4>
+                        <ul class="list-disc list-inside text-slate-600 mt-2 space-y-1">
+                            <li>一般的で行動に繋がらない</li>
+                            <li>教科や学年が特定されていない</li>
+                            <li>具体的な実践方法が欠けている</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-xl p-8 border-t-8 border-green-500">
+                    <h3 class="text-2xl font-bold text-green-800 mb-4">改善後 👍</h3>
+                    <p class="font-mono bg-slate-100 p-4 rounded-md text-slate-700 text-sm">「あなたは優秀な教育コンサルタントです。中学校の理科教師として、光合成の授業で使えるAIを活用したアクティブラーニングのアイデアを3つ、メリットと課題を詳述した**表形式**で提案してください。」</p>
+                    <div class="mt-6">
+                        <h4 class="font-bold text-slate-800">得られる結果：</h4>
+                        <ul class="list-disc list-inside text-slate-600 mt-2 space-y-1">
+                            <li>具体的で適切なアイデア</li>
+                            <li>構造化され比較しやすい</li>
+                            <li>すぐに授業計画に活かせる</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="data-viz" class="my-24">
+             <h2 class="text-3xl font-bold text-center mb-4">より良いプロンプトの効果</h2>
+            <p class="text-center text-slate-600 max-w-3xl mx-auto mb-12">優れたプロンプトは、AIの能力を最大限に引き出します。回答の質と有用性には、これだけの差が生まれます。</p>
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+                <div class="chart-container">
+                    <canvas id="qualityChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="advanced-prompts" class="my-24">
+            <h2 class="text-3xl font-bold text-center mb-4">プロンプト応用編</h2>
+            <p class="text-center text-slate-600 max-w-3xl mx-auto mb-12">基本をマスターしたら、次はAIを思考のパートナーとしてさらに活用するためのテクニックです。</p>
+            <div id="accordion" class="space-y-4 max-w-4xl mx-auto">
+                <div class="bg-white rounded-lg shadow-md">
+                    <button class="accordion-header w-full flex justify-between items-center p-5 text-left font-semibold text-lg text-blue-800">
+                        <span>思考を深めるテクニック</span>
+                        <span class="accordion-icon transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content px-5 pb-5">
+                        <div class="border-t pt-4 space-y-4">
+                            <p><strong>① フェルミ推定：</strong>「全国で1年間に使われる学級新聞の紙の量は？ざっくりでいいからステップで考えて」→ 複雑な問いに、AIが“現実感ある思考過程”で答えられるようになります。</p>
+                            <p><strong>② 対比・比較：</strong>「従来の授業と、生成AIを使った探究活動の違いを5項目で比較して」→ 思考が“厚く”なり、メリット・デメリット両方を引き出せます。</p>
+                            <p><strong>③ 仮説検証：</strong>「小学生に生成AIを使わせたらリテラシーはどう変わるか、仮説と根拠、リスクを考えて」→ 未来予測・探究型学習にピッタリです。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md">
+                    <button class="accordion-header w-full flex justify-between items-center p-5 text-left font-semibold text-lg text-blue-800">
+                        <span>発想を広げるテクニック</span>
+                        <span class="accordion-icon transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content px-5 pb-5">
+                        <div class="border-t pt-4 space-y-4">
+                           <p><strong>① ピラミッド構造：</strong>「この活用例を“学年別”“教科別”で整理して」「大→中→小の順で構造化して」→ ロジカルに話す訓練になり、スライドづくりにも向いています。</p>
+                           <p><strong>② 制約条件プレイ：</strong>「紙と鉛筆しか使えない授業で、生成AIをどう活用したと言えるか？」→ 制限があるからこそ、逆に面白い発想が出ます。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="takeaways" class="my-24">
+            <h2 class="text-3xl font-bold text-center mb-12">あなたのAIツールキット：重要ポイント</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-blue-800 text-white rounded-2xl shadow-xl p-8">
+                    <h3 class="text-2xl font-bold mb-4">1. 質が質を生む</h3>
+                    <p>AIはあなたのプロンプトの質を映す鏡です。質の高いインプットが、質の高いアウトプットを生み出します。</p>
+                </div>
+                <div class="bg-blue-800 text-white rounded-2xl shadow-xl p-8">
+                    <h3 class="text-2xl font-bold mb-4">2. あなたが監督になる</h3>
+                    <p>受動的な質問者ではなく、前提、役割、形式を明確に指示する「監督」になりましょう。</p>
+                </div>
+                <div class="bg-blue-800 text-white rounded-2xl shadow-xl p-8">
+                    <h3 class="text-2xl font-bold mb-4">3. AIをパートナーと考える</h3>
+                    <p>単なる道具ではなく、思考を刺激し、能力を拡張してくれる頼もしい相棒として活用しましょう。</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-8 text-slate-500 text-sm">
+        <p>効果的なAIプロンプト戦略を可視化するために作成されたインタラクティブSPAです。</p>
+        <p>Visualizations rendered using Chart.js and Tailwind CSS. NO SVG or Mermaid.js were used.</p>
+    </footer>
+
+    <script>
+        const ctx = document.getElementById('qualityChart');
+        if (ctx) {
+            const data = {
+                labels: ['曖昧なプロンプトの質', '具体的なプロンプトの質'],
+                datasets: [{
+                    label: '回答の質',
+                    data: [20, 80],
+                    backgroundColor: [
+                        '#ef4444', // red-500
+                        '#22c55e'  // green-500
+                    ],
+                    borderColor: '#f8fafc',
+                    borderWidth: 5,
+                    hoverOffset: 10
+                }]
+            };
+
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 25,
+                                font: {
+                                    size: 14,
+                                    family: "'Inter', 'Noto Sans JP', sans-serif"
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    if (Array.isArray(label)) {
+                                      return label.join(' ');
+                                    } else {
+                                      return label;
+                                    }
+                                },
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        const accordion = document.getElementById('accordion');
+        if (accordion) {
+            const headers = accordion.getElementsByClassName('accordion-header');
+            for (let i = 0; i < headers.length; i++) {
+                headers[i].addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('.accordion-icon');
+                    
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        icon.style.transform = 'rotate(180deg)';
+                    }
+                });
+            }
+        }
+    </script>
+
+</body>
+</html>
